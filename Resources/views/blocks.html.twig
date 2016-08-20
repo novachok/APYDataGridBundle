@@ -273,7 +273,11 @@
 {% for key, index in values -%}
     {% set value = index %}
     {% set sourceValue = sourceValues[key] %}
-    {{ block('grid_column_cell') | raw }}
+    {% if value is iterable %}
+        #TODO: deep array
+    {% else %}
+        {{ block('grid_column_cell') | raw }}
+    {% endif %}
     {% if not loop.last %}
       {{ column.separator | raw }}
     {% endif %}
