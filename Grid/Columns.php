@@ -46,16 +46,15 @@ class Columns implements \IteratorAggregate, \Countable
     {
         $column->setAuthorizationChecker($this->authorizationChecker);
 
-            if ($position > 0) {
-                $position--;
-            } else {
-                $position = max(0, count($this->columns) + $position);
-            }
-
-            $head = array_slice($this->columns, 0, $position);
-            $tail = array_slice($this->columns, $position);
-            $this->columns = array_merge($head, array($column), $tail);
+        if ($position > 0) {
+            $position--;
+        } else {
+            $position = max(0, count($this->columns) + $position);
         }
+
+        $head = array_slice($this->columns, 0, $position);
+        $tail = array_slice($this->columns, $position);
+        $this->columns = array_merge($head, array($column), $tail);
 
         return $this;
     }
