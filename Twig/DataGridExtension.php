@@ -314,7 +314,7 @@ class DataGridExtension extends \Twig_Extension implements \Twig_Extension_Globa
     protected function renderBlock($name, $parameters)
     {
         foreach ($this->getTemplates() as $template) {
-            if ($template->hasBlock($name)) {
+            if ($template->hasBlock($name, [])) {
                 return $template->renderBlock($name, array_merge($this->environment->getGlobals(), $parameters, $this->params));
             }
         }
@@ -332,7 +332,7 @@ class DataGridExtension extends \Twig_Extension implements \Twig_Extension_Globa
     protected function hasBlock($name)
     {
         foreach ($this->getTemplates() as $template) {
-            if ($template->hasBlock($name)) {
+            if ($template->hasBlock($name, [])) {
                 return true;
             }
         }
