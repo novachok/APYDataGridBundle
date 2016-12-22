@@ -106,16 +106,16 @@ class DataGridExtension extends \Twig_Extension implements \Twig_Extension_Globa
     public function getFunctions()
     {
         return array(
-            new \Twig_Function('grid', array($this, 'getGrid'), array('is_safe' => array('html'))),
-            new \Twig_Function('grid_html', array($this, 'getGridHtml'), array('is_safe' => array('html'))),
-            new \Twig_Function('grid_url', array($this, 'getGridUrl'), array('is_safe' => array('html'))),
-            new \Twig_Function('grid_filter', array($this, 'getGridFilter'), array('is_safe' => array('html'))),
-            new \Twig_Function('grid_column_operator', array($this, 'getGridColumnOperator'), array('is_safe' => array('html'))),
-            new \Twig_Function('grid_cell', array($this, 'getGridCell'), array('is_safe' => array('html'))),
-            new \Twig_Function('grid_search', array($this, 'getGridSearch'), array('is_safe' => array('html'))),
-            new \Twig_Function('grid_pager', array($this, 'getGridPager'), array('is_safe' => array('html'))),
-            new \Twig_Function('grid_pagerfanta', array($this, 'getPagerfanta'), array('is_safe' => array('html'))),
-                new \Twig_Function('grid_*', array($this, 'getGrid_'), array('is_safe' => array('html')))
+            new \Twig_SimpleFunction('grid', array($this, 'getGrid'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('grid_html', array($this, 'getGridHtml'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('grid_url', array($this, 'getGridUrl'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('grid_filter', array($this, 'getGridFilter'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('grid_column_operator', array($this, 'getGridColumnOperator'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('grid_cell', array($this, 'getGridCell'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('grid_search', array($this, 'getGridSearch'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('grid_pager', array($this, 'getGridPager'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('grid_pagerfanta', array($this, 'getPagerfanta'), array('is_safe' => array('html'))),
+            new \Twig_SimpleFunction('grid_*', array($this, 'getGrid_'), array('is_safe' => array('html')))
         );
     }
 
