@@ -799,6 +799,9 @@ class Grid implements GridInterface
 
                 // Get data from request
                 $data = $this->getFromRequest($ColumnId);
+                if(empty($data['from']) || (is_array($data['from']) && empty($data['from'][0]))) {
+                    $data = null;
+                }
 
                 //if no item is selectd in multi select filter : simulate empty first choice
                 if( $column->getFilterType() == 'select'
@@ -828,11 +831,14 @@ class Grid implements GridInterface
     protected function processPage($page, $filtering = false)
     {
         // Set to the first page if this is a request of order, limit, mass action or filtering
+        
         if ($this->getFromRequest(self::REQUEST_QUERY_ORDER) !== null
             || $this->getFromRequest(self::REQUEST_QUERY_LIMIT) !== null
             || $this->getFromRequest(self::REQUEST_QUERY_MASS_ACTION) !== null
             || $filtering) {
-            $this->set(self::REQUEST_QUERY_PAGE, 0);
+                
+            $page = !$filtering ? $this->page : 0;
+            $this->set(self::REQUEST_QUERY_PAGE, $page);
         } else {
             $this->set(self::REQUEST_QUERY_PAGE, $page);
         }
