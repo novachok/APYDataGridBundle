@@ -36,7 +36,7 @@ class Row
     public function getEntity()
     {
         $primaryKeyValue = current($this->getPrimaryKeyValue());
-
+ 
         return $this->repository->find($primaryKeyValue);
     }
 

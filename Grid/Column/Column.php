@@ -63,44 +63,45 @@ abstract class Column
     /**
      * Internal parameters
      */
-    protected $id;
-    protected $title;
-    protected $sortable;
-    protected $filterable;
-    protected $visible;
-    protected $callback;
-    protected $order;
-    protected $size;
-    protected $visibleForSource;
-    protected $primary;
     protected $align;
-    protected $inputType;
-    protected $field;
-    protected $role;
-    protected $filterType;
-    protected $filter;
-    protected $params;
-    protected $isSorted = false;
-    protected $orderUrl;
     protected $authorizationChecker;
+    protected $callback;
+    protected $class;
     protected $data;
+    protected $defaultOperator;
+    protected $export;
+    protected $field;
+    protected $filter;
+    protected $filterable;
+    protected $filterType;
+    protected $filterId;
+    protected $id;
+    protected $inputType;
+    protected $isManualField;
+    protected $isAggregate;
+    protected $isSorted = false;
+    protected $joinType;
     protected $operatorsVisible;
     protected $operators;
-    protected $defaultOperator;
-    protected $values = array();
+    protected $order;
+    protected $orderUrl;
+    protected $params;
+    protected $primary;
+    protected $role;
+    protected $size;
+    protected $sortable;
     protected $selectFrom;
     protected $selectMulti;
     protected $selectExpanded;
     protected $searchOnClick = false;
     protected $safe;
     protected $separator;
-    protected $joinType;
-    protected $export;
-    protected $class;
-    protected $isManualField;
-    protected $isAggregate;
-    protected $usePrefixTitle;
+    protected $title;
     protected $translationDomain;
+    protected $visible;
+    protected $visibleForSource;
+    protected $values = array();
+    protected $usePrefixTitle;
 
     protected $dataJunction = self::DATA_CONJUNCTION;
 
@@ -124,6 +125,7 @@ abstract class Column
         $this->setVisible($this->getParam('visible', true));
         $this->setSize($this->getParam('size', -1));
         $this->setFilterable($this->getParam('filterable', true));
+        $this->setFilterId($this->getParam('filterId'));
         $this->setVisibleForSource($this->getParam('source', false));
         $this->setPrimary($this->getParam('primary', false));
         $this->setAlign($this->getParam('align', self::ALIGN_LEFT));
@@ -354,6 +356,31 @@ abstract class Column
     {
         return $this->filterable;
     }
+    
+    /**
+     * Set Name of column for filter
+     * 
+     * @param string $filterId
+     * @return \APY\DataGridBundle\Grid\Column\Column
+     */
+    public function setFilterId($filterId) 
+    {
+        $this->filterId = $filterId;
+        
+        return $this;
+    }
+    
+    
+    /**
+     * Get Name of column for filter
+     * 
+     * @return string
+     */
+    public function getFilterId()
+    {
+        return $this->filterId;
+    }
+    
 
     /**
      * set column order
@@ -770,6 +797,8 @@ abstract class Column
     public function setSelectMulti($selectMulti)
     {
         $this->selectMulti = $selectMulti;
+        
+        return $this;
     }
 
     public function getSelectExpanded()
@@ -780,6 +809,8 @@ abstract class Column
     public function setSelectExpanded($selectExpanded)
     {
         $this->selectExpanded = $selectExpanded;
+        
+        return $this;
     }
 
     public function hasDQLFunction(&$matches = null)
@@ -904,6 +935,8 @@ abstract class Column
     public function setIsManualField($isManualField)
     {
         $this->isManualField = $isManualField;
+        
+        return $this;
     }
 
     public function getIsManualField()
@@ -914,6 +947,8 @@ abstract class Column
     public function setIsAggregate($isAggregate)
     {
         $this->isAggregate = $isAggregate;
+        
+        return $this;
     }
 
     public function getIsAggregate()
@@ -929,6 +964,7 @@ abstract class Column
     public function setUsePrefixTitle($usePrefixTitle)
     {
         $this->usePrefixTitle = $usePrefixTitle;
+        
         return $this;
     }
 
