@@ -799,7 +799,7 @@ class Grid implements GridInterface
 
                 // Get data from request
                 $data = $this->getFromRequest($ColumnId);
-                if(empty($data['from']) || (is_array($data['from']) && empty($data['from'][0]))) {
+                if(empty($data['from']) || (is_array($data['from']) && $data['from'][0] === "")) {
                     $data = null;
                 }
 
